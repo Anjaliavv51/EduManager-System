@@ -63,8 +63,14 @@ public class StudentService {
      */
     @Async
     public CompletableFuture<Integer> batchImportStudents(List<Student> students) {
-        int[] results = studentDAO.batchInsert(students);
-        return CompletableFuture.completedFuture(results.length);
+        int[][] results = studentDAO.batchInsert(students);
+        int totalInserted = 0;
+        for (int[] batch : results) {
+            for (int count : batch) {
+                totalInserted += count;
+            }
+        }
+        return CompletableFuture.completedFuture(totalInserted);
     }
 
     public long getStudentCount() {

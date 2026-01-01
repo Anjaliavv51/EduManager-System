@@ -116,7 +116,7 @@ public class StudentDAO {
     /**
      * Batch insert for high-throughput operations
      */
-    public int[] batchInsert(List<Student> students) {
+    public int[][] batchInsert(List<Student> students) {
         String sql = "INSERT INTO students (first_name, last_name, email, phone_number, " +
                     "date_of_birth, address, enrollment_date, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
